@@ -27,6 +27,7 @@ def story_begins
   END
 end
 
+
 def riddle  
   puts "Type 'read' to read the piece of paper: "
   print "> "
