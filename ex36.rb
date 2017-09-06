@@ -65,8 +65,8 @@ def view_bottles
     view = $stdin.gets.chomp
   end
   puts "You glance again at the table. This time, you notice that there are 7 bottles."
-  bottles = ["1", "2", "3", "4", "5", "6", "7"]
-  puts bottles
+  @bottles = ["1", "2", "3", "4", "5", "6", "7"]
+  puts @bottles
 end
 
 def prompt
@@ -94,13 +94,13 @@ end
 def make_note
   puts "Select a bottle: "
   print "> "
-  bottleNum = $stdin.gets.chomp
-  puts "Bottle ##{bottleNum} selected. Enter your note: "
+  bottle_num = $stdin.gets.chomp
+  puts "Bottle ##{bottle_num} selected. Enter your note: "
   print "> "
   bottleNote = $stdin.gets.chomp
-  bottleToMod = bottleNum.to_i - 1
-  bottles[bottles.index(bottleToMod)] = [potionNum + "[" + potionNote + "]"]
-  puts "Entered note '#{bottleNote}' for potion ##{potionNum}"
+  bottleToMod = bottle_num.to_i - 1
+  @bottles[@bottles.index(bottleToMod)] = [bottle_num + "[" + potionNote + "]"]
+  puts "Entered note '#{bottleNote}' for potion ##{bottle_num}"
   prompt
 end
 
@@ -228,13 +228,17 @@ def fin
   end
 end
 
-story_begins
-riddle
-view_bottles
-prompt
-sel_oneDrinker
-sel_oneBottle
-drink_bottle
-sel_twoBottle
-sel_twoDrinker
-fin
+def start
+  story_begins
+  riddle
+  view_bottles
+  prompt
+  sel_oneDrinker
+  sel_oneBottle
+  drink_bottle
+  sel_twoBottle
+  sel_twoDrinker
+  fin
+end
+
+start
