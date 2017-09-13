@@ -11,9 +11,15 @@
 # - tackle
 # - harden
 # - focus
+# - pidgey
+# - rattata
+# - move properties
+# - boost self attack
+# - boost self defense
+# - lower opponent health
 
 # SORTED THINGS
-# status:
+# status: NOT A CLASS
 # - attack
 # - defense
 # - HP
@@ -26,19 +32,18 @@
 # - rattata
 # move properties
 # -- pp
-# -- effect
+# -- boost self defense
+# -- boost self attack
 
 class Status
-  def attack
-    
-  end
+
 end
 
 class Moves
-  def tackle
-    
-  end
 end
 
-class Props
+class Pokemon
+end
+
+class Properties
 end
