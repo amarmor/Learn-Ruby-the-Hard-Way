@@ -33,6 +33,8 @@ class Sentence
       else
         return nil
       end
+    else
+      return nil
     end
   end
 

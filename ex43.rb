@@ -1,8 +1,9 @@
 class Scene
   def enter()
+    puts "This scene is not yet configured. Subclass it and implement enter()."
+    exit(1)
   end
 end
-
 
 class Engine
   
@@ -44,11 +45,13 @@ class CentralCorridor < Scene
       'death'
     elsif action == "run"
       puts "The Goton chases you."
-      death
+      'death'
     elsif action == "tell a joke"
       puts "The Goton's face breaks into a grin, and suddenly, the Gothon's explodes! Looks like humor kills Gothons. Lucky you."
+      'laser_weapon_armory'
     else
-      puts "Does not compute. Please enter a new action.> "
+      puts "DOES NOT COMPUTE!"
+      'central_corridor'
     end
   end
 end
@@ -57,27 +60,35 @@ class LaserWeaponArmory < Scene
 
   def enter()
     puts "You've entered the Laser Weapon Armory, and lo and behold, that's a neutron bomb! Let's get it. Then we can blow this tin tan to smithereens and -- wa-oosh! -- zip away in an escape pod. But it looks like the bomb has a 10-guess keypad. Can you get the code right?"
-
-    print "Enter a 3-digit code: > "
-
-    attempt = $stdin.gets.chomp
-
-    code == "123"
-
+    
     tries_left = 10
+    attempt = nil
+    code = nil
+    
+    while tries_left != 0 && attempt != code
+      print "Enter a 3-digit code: > "
+      
+      attempt = $stdin.gets.chomp
+      code = "123"
 
-    while tries_left > 0 
-      if attempt == "123"
+      if attempt == code 
         puts "Congratulations! You unlocked the bomb. Now let's move this sucker to the Bridge."
-      else
+        'the_bridge'
+      elsif tries_left > 0
         tries_left -= 1
-        puts "Does not compute. You have #{tries_left} tries left. Enter a 3-digit code: >"
+        puts "Wrong code! You have #{tries_left} tries left."
+        'laser_weapon_armory'
+      else
+        'death'
       end
     end
+    
     if tries_left == 0
-      death
+      'death'
     end
+
   end
+
 end
 
 class TheBridge < Scene
@@ -128,11 +139,11 @@ class Map
       'finished' => Finished.new()
     }
 
-  def initialize( start_scene)
+  def initialize(start_scene)
     @start_scene = start_scene
   end
 
-  def next_scene( scene_name)
+  def next_scene(scene_name)
     val = @@scenes[scene_name]
     return val
   end
