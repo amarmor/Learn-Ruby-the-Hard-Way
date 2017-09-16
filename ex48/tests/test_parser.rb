@@ -11,6 +11,6 @@ class TestParser < Test::Unit::TestCase
   end
 
   def test_skip
-    assert_equal('object' 'north', Sentence.skip([['object', 'north']], 'object'))
+    assert_equal(['stop', 'the'], Sentence.skip([['stop', 'the'], ['object', 'north']], 'stop'))
   end
 end
